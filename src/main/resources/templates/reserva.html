@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/materialize/materialize/css/materialize.min.css}">
+    <link rel="stylesheet" th:href="@{/css/quartos.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <title>Área de Reserva</title>
+</head>
+
+<body>
+    <div th:replace="~{menu :: menu}"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card" id=itensC>
+                    <div class="card-content">
+                        <span class="card-title">Quartos Luxuosos Disponiveis:</span>
+                        <!--<p th:if="${mensagem}" th:text="${mensagem}"></p>-->
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Preço</th>
+                                    <th>Reservar</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="q : ${quartosLuxo}">
+                                    <td th:text="${q.id}">1</td>
+                                    <td th:text="${q.preco}">30050</td>
+                                    <td>
+                                        <a th:href="@{/hotel/quartos/quartoLuxo/{id}/solicitar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/reservar.png}" alt="" srcset=""></a>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="card" id=itensC>
+                    <div class="card-content">
+                        <span class="card-title">Quartos Master Disponiveis:</span>
+                        <!--<p th:if="${mensagem}" th:text="${mensagem}"></p>-->
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Preço</th>
+                                    <th>Reservar</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="q : ${quartosMaster}">
+                                    <td th:text="${q.id}">1</td>
+                                    <td th:text="${q.preco}">5003</td>
+                                    <td>
+                                        <a th:href="@{/hotel/quartos/quartoMaster/{id}/solicitar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/reservar.png}" alt="" srcset=""></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="card" id=itensC>
+                    <div class="card-content">
+                        <span class="card-title">Quartos Simples Disponiveis:</span>
+                        <!--<p th:if="${mensagem}" th:text="${mensagem}"></p>-->
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Preço</th>
+                                    <th>Reservar</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="q : ${quartosSimples}">
+                                    <td th:text="${q.id}">1</td>
+                                    <td th:text="${q.preco}">2001</td>
+                                    <td>
+                                        <a th:href="@{/hotel/quartos/quartoSimples/{id}/solicitar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/reservar.png}" alt="" /></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

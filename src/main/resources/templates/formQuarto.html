@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/materialize/materialize/css/materialize.min.css}">
+    <link rel="stylesheet" th:href="@{/css/formQuarto.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+
+    <script>
+        function atualizarImagem(caminho) {
+            document.getElementById('foto').src = caminho;
+        }
+    </script>
+
+    <title>Formulário de Criação de Quartos</title>
+</head>
+
+<body>
+    <div th:replace="~{menuQuarto :: menuQuarto}"></div>
+
+    <h1>Cadastro de Quartos</h1>
+
+    <div class="row form">
+        <form class="col s12" action="/hotel/quartos/salvar" method="post">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="preco">Preço</label> <br>
+                    <input name="preco" value="" id="preco" type="number" class="validate">
+                </div>
+            </div>
+            <div>
+                <p>
+                    <label>
+                        <input class="with-gap" name="tipoQuarto" type="radio" checked value="simples" />
+                        <span onclick="atualizarImagem('/imagens/quartos/simples.jpg')">Simples</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="tipoQuarto" type="radio" value="master" />
+                        <span onclick="atualizarImagem('/imagens/quartos/master.jpg')">Master</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="tipoQuarto" type="radio" value="luxo" />
+                        <span onclick="atualizarImagem('/imagens/quartos/luxuoso.jpg')">Luxo</span>
+                    </label>
+                </p>
+            </div>
+            <img src="" alt="" srcset="" id="foto">
+            <div class="row">
+                <div class="col-4 botao" id="">
+                    <button class="btn waves-effect waves-light " type="submit">Salvar</button>
+                    <button class="btn waves-effect waves-light " type="reset">Limpar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

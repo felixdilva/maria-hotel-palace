@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/materialize/materialize/css/materialize.min.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <nav th:fragment="menuQuarto" name="Logo" id="logo">
+        <div class="nav-wrapper blue lighten-2">
+            <a href="/" class="brand-logo" id="nomeL">Maria's Hotel</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li id="menu"><a href="/hotel">Home</a></li>
+                <li id="menu"><a href="/hotel/quartos/form">Cadastrar Quartos</a></li>
+                <li id="menu"><a href="/hotel/quartos">Area de Quartos</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+</html>

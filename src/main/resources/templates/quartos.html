@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/materialize/materialize/css/materialize.min.css}">
+    <link rel="stylesheet" th:href="@{/css/quartos.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <title>Área de Quartos</title>
+</head>
+
+<body>
+    <div th:replace="~{menuQuarto :: menuQuarto}"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card" id=itensC>
+                    <div class="card-content">
+                        <span class="card-title">Quartos Luxuosos Cadastrados:</span>
+                        <!--<p th:if="${mensagem}" th:text="${mensagem}"></p>-->
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Preço</th>
+                                    <th>Status</th>
+                                    <th>Cliente Ocupando</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="q : ${quartosLuxo}">
+                                    <td th:text="${q.id}">1</td>
+                                    <td th:text="${q.preco}">30000</td>
+                                    <td th:text="${q.status}">OCUPADO</td>
+                                    <td th:switch="${q.hospede}">
+                                        <p th:case="null">Vago</p>
+                                        <p th:case="*" th:text="${q.hospede.nome}"></p>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/hotel/quartos/quartoLuxo/{id}/reservar(id=${q.id})}"
+                                            th:if="${q.status == T(pi.palace.hotel.maria.enums.Status).SOLICITADO}"><img th:src="@{/imagens/icons/confirmar.png}"
+                                                alt="" srcset=""></a>
+                                        <a th:href="@{/hotel/quartos/quartoLuxo/{id}/deletar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/delete.png}" alt="" srcset=""></a>
+                                        <a th:href="@{/hotel/quartos/quartoLuxo/{id}/liberar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/vaga.png}" alt="" srcset=""></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="card" id=itensC>
+                    <div class="card-content">
+                        <span class="card-title">Quartos Master Cadastrados:</span>
+                        <!--<p th:if="${mensagem}" th:text="${mensagem}"></p>-->
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Preço</th>
+                                    <th>Status</th>
+                                    <th>Cliente Ocupando</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="q : ${quartosMaster}">
+                                    <td th:text="${q.id}">1</td>
+                                    <td th:text="${q.preco}">feijao</td>
+                                    <td th:text="${q.status}">OCUPADO</td>
+                                    <td th:switch="${q.hospede}">
+                                        <p th:case="null">Vago</p>
+                                        <p th:case="*" th:text="${q.hospede.nome}"></p>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/hotel/quartos/quartoMaster/{id}/reservar(id=${q.id})}"
+                                            th:if="${q.status == T(pi.palace.hotel.maria.enums.Status).SOLICITADO}"><img th:src="@{/imagens/icons/confirmar.png}"
+                                                alt="" srcset=""></a>
+                                        <a th:href="@{/hotel/quartos/quartoMaster/{id}/deletar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/delete.png}" alt="" srcset=""></a>
+                                        <a th:href="@{/hotel/quartos/quartoMaster/{id}/liberar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/vaga.png}" alt="" srcset=""></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="card" id=itensC>
+                    <div class="card-content">
+                        <span class="card-title">Quartos Simples Cadastrados:</span>
+                        <!--<p th:if="${mensagem}" th:text="${mensagem}"></p>-->
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Preço</th>
+                                    <th>Status</th>
+                                    <th>Clientes Ocupando</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="q : ${quartosSimples}">
+                                    <td th:text="${q.id}">1</td>
+                                    <td th:text="${q.preco}">feijao</td>
+                                    <td th:text="${q.status}">OCUPADO</td>
+                                    <td th:switch="${#lists.isEmpty(q.hospedes)}">
+                                        <p th:case="true">Vago</p>
+                                        <ul th:case="false" th:each="h : ${q.hospedes}">
+                                            <li th:text="${h.nome}"></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/hotel/quartos/quartoSimples/{id}/reservar(id=${q.id})}"
+                                            th:if="${q.status == T(pi.palace.hotel.maria.enums.Status).SOLICITADO}"><img th:src="@{/imagens/icons/confirmar.png}"
+                                                alt="" srcset=""></a>
+                                        <a th:href="@{/hotel/quartos/quartoSimples/{id}/deletar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/delete.png}" alt="" /></a>
+                                        <a th:href="@{/hotel/quartos/quartoSimples/{id}/liberar(id=${q.id})}"><img
+                                                th:src="@{/imagens/icons/vaga.png}" alt="" srcset=""></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
